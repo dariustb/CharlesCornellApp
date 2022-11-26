@@ -1,13 +1,14 @@
 # Python v. 3.10.4, 64-bit
 
 # ------------------------------------------------
-# This is to solve the challenge given by
-# Charles Cornell for some free music instruction
+#   This is to solve the challenge given by
+#   Charles Cornell for some free music lessons
 # ------------------------------------------------
 
 import cv2      # Exracts frames from video
+import PIL      
 
-def extractFrames(video_path: str):
+def extract_frames(video_path: str):
     ''' Extracts frames from video_path and saves them into ouptut folder'''
     # From fireant on StackOverflow
     # https://stackoverflow.com/questions/33311153/python-extracting-and-saving-video-frames
@@ -18,14 +19,14 @@ def extractFrames(video_path: str):
     while success:
         cv2.imwrite("output/frame%d.jpg" % count, image)     # save frame as JPEG file      
         success,image = vidcap.read()
-        print('Read a new frame: ', success)
         count += 1
-    print("Count =", count)
+    print("Frames counted:", count)
 
-def searchFrames():
+def search_frames():
     pass
 
 if __name__ == "__main__":
-    video_path = "input/skunky.mp4"
+    video_path = "input/huh2.mp4"
+    ref_image  = "input/ref.jpg"
     
-    extractFrames(video_path)
+    extract_frames(video_path)
