@@ -1,10 +1,5 @@
 # Python v. 3.10.4, 64-bit
 
-# ------------------------------------------------
-#   This is to solve the challenge given by
-#   Charles Cornell for some free music lessons
-# ------------------------------------------------
-
 import cv2      # Exracts frames from video
 import PIL      
 
