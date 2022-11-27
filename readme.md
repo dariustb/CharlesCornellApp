@@ -6,7 +6,7 @@ I wrote this in response to a challenge issued on November 26, 2022 by pianist, 
 
 Cornell basically asks in [a community post][community_post] to find this candid image from a video frame that he found hisself:
 
-![image to find](input\image_to_find.jpg)
+![image to find](assets\ref.jpg)
 
 This frame will be in a video that he will post later on Youtube, *[How is the Spy Family Soundtrack THIS Good?][spy_family_video]*. Whoever emails him a screenshot first gets Cornell's entire selection of music courses for free ($99 value!). 
 
