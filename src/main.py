@@ -1,57 +1,50 @@
 # Python v. 3.10.4, 64-bit
 
 import cv2      # Exracts frames from video
-import PIL      
-
-def extract_frames(video_path: str):
-    ''' Extracts frames from video_path and saves them into ouptut folder'''
+from matplotlib import pyplot as plt
+import numpy as np
+    
+def extract_frames(video_path: str, ref_path: str):
+    ''' Extracts frames from video_path to get checked for the ref image'''
     # From fireant on StackOverflow
     # https://stackoverflow.com/questions/33311153/python-extracting-and-saving-video-frames
     
     vidcap = cv2.VideoCapture(video_path)
-    success,image = vidcap.read()
+    template = cv2.imread(ref_path, 0)
     count = 0
-    while success:
-        cv2.imwrite("output/frame%d.jpg" % count, image)     # save frame as JPEG file      
+
+    while True:
         success,image = vidcap.read()
+        if not success:
+            break  
+        process_image(image, template, count)
+
         count += 1
     print("Frames counted:", count)
 
-def search_frames():
-    pass
-
-if __name__ == "__main__":
-    video_path = "input/huh2.mp4"
-    ref_image  = "input/ref.jpg"
-    
-    extract_frames(video_path)
-
-import cv2
-import numpy as np
-from matplotlib import pyplot as plt
-
 def process_image(img_rgb, template, count):
+    ''' Checks if the image matches the frame '''
+    # From gowrath and georgiecasey on StackOverflow
+    # https://stackoverflow.com/questions/41336746/find-an-image-inside-of-a-video-using-python
+
     img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
-    
     w, h = template.shape[::-1]
 
     res = cv2.matchTemplate(img_gray,template,cv2.TM_CCOEFF_NORMED)
     threshold = 0.8
     loc = np.where( res >= threshold)
-    for pt in zip(*loc[::-1]):
-        cv2.rectangle(img_rgb, pt, (pt[0] + w, pt[1] + h), (0,0,255), 2)
 
-    # This will write different res.png for each frame. Change this as you require
-    cv2.imwrite('res{0}.png'.format(count),img_rgb)   
+    if len(loc[0]) > 0 :
+        cv2.imwrite('output/img{0}_orig.png'.format(count),img_rgb)   
+        for pt in zip(*loc[::-1]):
+            cv2.rectangle(img_rgb, pt, (pt[0] + w, pt[1] + h), (0,0,255), 2)
+        cv2.imwrite('output/img{0}_lined.png'.format(count),img_rgb)   
 
+# Driver
+if __name__ == "__main__":
+    video_path = "input/huh2.mp4"       # Video we are searching through
+    ref_path   = "input/ref.jpg"        # Image we are looking for in vid
 
-def main():
-    vidcap = cv2.VideoCapture('My_Video.mp4')
-    template = cv2.imread('small_icon_I_am_looking_for.png',0)  # open template only once
-    count = 0
-    while True:
-      success,image = vidcap.read()
-      if not success: break         # loop and a half construct is useful
-      print ('Read a new frame: ', success)
-      process_image(image, template, count)
-      count += 1
+    extract_frames(video_path, ref_path)
+
+    print("Ending program...")
