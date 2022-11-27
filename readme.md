@@ -41,6 +41,11 @@ Install dependencies
 pip install -r requirements.txt
 ```
 
+Add unincluded folders
+```bash
+mkdir input output
+```
+
 Open src/main and edit ref image and video paths
 ```python
 video_path = "input/vid.mp4"
