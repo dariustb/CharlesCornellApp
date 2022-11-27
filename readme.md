@@ -6,7 +6,7 @@ I wrote this in response to a challenge issued on November 26, 2022 by pianist, 
 
 Cornell basically asks in [a community post][community_post] to find this candid image from a video frame that he found hisself:
 
-![image to find](assets\ref.jpg)
+![image to find](https://github.com/dariustb/CharlesCornellApp/blob/main/assets/ref.jpg?raw=true)
 
 This frame will be in a video that he will post later on Youtube, *[How is the Spy Family Soundtrack THIS Good?][spy_family_video]*. Whoever emails him a screenshot first gets Cornell's entire selection of music courses for free ($99 value!). 
 
@@ -14,7 +14,7 @@ This frame will be in a video that he will post later on Youtube, *[How is the S
 
 And this program will separate your video into frames and search any image (cropped or not cropped) inside of each frame:
 
-![Screenshot (Frame 425 if you're curious)](assets\found.png)
+![Screenshot (Frame 425 if you're curious)](https://github.com/dariustb/CharlesCornellApp/blob/main/assets/found.png?raw=true)
 
 Shout out to Flynn for getting the win!
 
